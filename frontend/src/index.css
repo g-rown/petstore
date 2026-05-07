@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glass-cream {
+  background: rgba(245, 243, 240, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(99, 146, 121, 0.08);
+}
+
+/* Staggered animation delays for entrance */
+.stagger-1 {
+  animation-delay: 0s;
+}
+
+.stagger-2 {
+  animation-delay: 0.1s;
+}
+
+.stagger-3 {
+  animation-delay: 0.2s;
+}
+
+.stagger-4 {
+  animation-delay: 0.3s;
+}
+
+.stagger-5 {
+  animation-delay: 0.4s;
+}
+
+/* Navigation link underline hover effect */
+.nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #2d6a50;
+  transition: all 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Page transition wrapper */
+.page-transition-enter {
+  animation: scaleDownFade 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.page-transition-exit {
+  animation: scaleDownFade 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19) reverse;
+}
+
+/* High-performance transforms */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* Prevent layout shift during animations */
+.animate-stable {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

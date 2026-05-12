@@ -1,8 +1,8 @@
 package com.petstore.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,13 +13,9 @@ import java.net.URI;
 public class DataSourceConfig {
 
     @Bean
-    @ConfigurationProperties("spring.datasource")
-    public DataSourceProperties dataSourceProperties() {
-        return new DataSourceProperties();
-    }
-
-    @Bean
-    public DataSource dataSource(DataSourceProperties properties) {
+    public DataSource dataSource(
+            @Qualifier("spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties")
+                    DataSourceProperties properties) {
         String url = properties.getUrl();
         if (url != null && (url.startsWith("postgres://") || url.startsWith("postgresql://"))) {
             URI uri = URI.create(url);

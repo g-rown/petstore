@@ -102,10 +102,11 @@ const PetDetailPage = () => {
               alt={pet.name}
               sx={{ 
                 width: '100%', 
-                height: 'auto', 
+                height: { xs: 300, sm: 400, md: 450 }, 
                 borderRadius: 3,
                 objectFit: 'cover',
-                maxHeight: 500
+                border: '1px solid',
+                borderColor: 'divider',
               }} 
             />
           </Grid>
